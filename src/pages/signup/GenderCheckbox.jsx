@@ -1,6 +1,6 @@
 import React from "react";
 
-const GenderCheckbox = () => {
+const GenderCheckbox = ({ handleChange, value }) => {
   return (
     <div className="flex my-2 gap-2">
       <div className="form-control">
@@ -10,6 +10,8 @@ const GenderCheckbox = () => {
             type="radio"
             className="checkbox border-slate-900"
             name="gender"
+            onChange={handleChange}
+            value="male"
           />
         </label>
       </div>
@@ -20,6 +22,8 @@ const GenderCheckbox = () => {
             type="radio"
             className="checkbox border-slate-900"
             name="gender"
+            onChange={handleChange}
+            value="female"
           />
         </label>
       </div>
