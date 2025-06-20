@@ -101,8 +101,13 @@ const SignUp = () => {
             <button
               className="btn btn-block btn-sm mt-2 border border-slate-700"
               type="submit"
+              disabled={loading}
             >
-              Sign Up
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </div>
         </form>
