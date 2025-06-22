@@ -15,7 +15,6 @@ const useGetConversation = () => {
         });
         const data = await res.data;
         setConversations(data);
-        console.log(data);
       } catch (error) {
         toast.error(error.message);
       } finally {

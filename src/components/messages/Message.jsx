@@ -1,8 +1,16 @@
 import React from "react";
+import { useAuthContext } from "../../context/AuthContext";
+import { extractTime } from "../../utils/extractTime";
 
-const Message = () => {
+const Message = ({ message }) => {
+  const { authUser } = useAuthContext();
+  const fromMe = message.senderId == authUser.id;
+  const bubbleChatClassName = fromMe ? "chat-end" : "chat-start";
+  const bubbleBgColor = fromMe ? "bg-slate-800" : "bg-blue-500";
+  const formatedTime = extractTime(message.createdAt);
+
   return (
-    <div className={`chat chat-start`}>
+    <div className={`chat ${bubbleChatClassName}`}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
           <img
@@ -12,9 +20,12 @@ const Message = () => {
         </div>
       </div>
       <div
-        className={`chat-bubble text-white bg-blue-500 max-w-[370px] rounded-xl`}
+        className={`chat-bubble text-white ${bubbleBgColor} max-w-[370px] rounded-xl`}
       >
-        Lorem ipsum,
+        {message.message}
+      </div>
+      <div className="chat-footer opacity-50 text-xs flex gap-1 items-center pt-2">
+        {formatedTime}
       </div>
     </div>
   );
